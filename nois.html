@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Descobridor de Palíndromos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, button { padding: 10px; font-size: 16px; margin-top: 10px; }
+        #resultado { margin-top: 20px; font-weight: bold; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <h2>Verificador de Palíndromos </h2>
+    <p>Escreva uma palavra ou frase abaixo para descobrir se é um palíndromo:</p>
+
+    <input type="text" id="palavraDigitada" placeholder="Digite aqui...">
+    
+    <button onclick="checarPalindromo()">Descobrir</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function checarPalindromo() {
+        
+            const input = document.getElementById("palavraDigitada").value;
+            const areaResultado = document.getElementById("resultado");
+
+           
+            if (input.trim() === "") {
+                areaResultado.textContent = "Por favor, escreva uma palavra primeiro! ";
+                areaResultado.style.color = "orange";
+                return;
+            }
+
+         
+            const textoLimpo = input.toLowerCase().replace(/[^a-z0-9]/g, '');
+            
+        
+            const textoInvertido = textoLimpo.split('').reverse().join('');
+
+           
+            if (textoLimpo === textoInvertido) {
+                areaResultado.textContent = `"${input}" É um palíndromo! `;
+                areaResultado.style.color = "green";
+            } else {
+                areaResultado.textContent = `"${input}" NÃO é um palíndromo. `;
+                areaResultado.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
