@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; margin: 5px; width: 100px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        #resultado { font-size: 20px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Calculadora Simples</h2>
+
+    <input type="number" id="n1" placeholder="Nº 1">
+    <input type="number" id="n2" placeholder="Nº 2">
+    <br><br>
+    
+    <button onclick="operar('+')">+</button>
+    <button onclick="operar('-')">-</button>
+    <button onclick="operar('*')">*</button>
+    <button onclick="operar('/')">/</button>
+    <br>
+    <button onclick="limpar()" style="background-color: #f44336; color: white;">Limpar</button>
+
+    <div id="resultado">Aguardando</div>
+
+    <script>
+        function operar(sinal) {
+            const n1 = parseFloat(document.getElementById('n1').value);
+            const n2 = parseFloat(document.getElementById('n2').value);
+            const resDiv = document.getElementById('resultado');
+
+         
+            if (isNaN(n1) || isNaN(n2)) {
+                resDiv.innerHTML = "Preencha os dois números!";
+                return;
+            }
+
+            let resultado;
+            let operacao = "";
+
+            
+            if (sinal === '+') {
+                resultado = n1 + n2;
+                operacao = "+";
+            } else if (sinal === '-') {
+                resultado = n1 - n2;
+                operacao = "-";
+            } else if (sinal === '*') {
+                resultado = n1 * n2;
+                operacao = "x";
+            } else if (sinal === '/') {
+                if (n2 === 0) {
+                    resDiv.innerHTML = "Erro: Divisão por zero!";
+                    return;
+                }
+                resultado = n1 / n2;
+                operacao = "/";
+            }
+
+            
+            resDiv.innerHTML = `Resultado: ${resultado}`;
+        }
+
+        function limpar() {
+            document.getElementById('n1').value = "";
+            document.getElementById('n2').value = "";
+            document.getElementById('resultado').innerHTML = "Aguardando valores...";
+        }
+    </script>
+
+</body>
+</html>
